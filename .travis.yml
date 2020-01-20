@@ -1,0 +1,12 @@
+sudo: required # Superuser required to run docker
+language: generic
+services:
+  - docker # Docker cli is a required service
+   
+# Section of commands to execute before running tests
+before_install:
+  - docker build -t ryanwolfsr/docker-react -f Dockerfile.dev .
+           
+# Tell Travis how to run the test suite          
+script:
+  - docker run -e CI=true ryanwolfsr/docker-react npm run test -- --coverage  
