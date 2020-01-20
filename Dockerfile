@@ -8,13 +8,13 @@ FROM node:alpine as builder
 WORKDIR '/app'
 
 # List of dependencies to be installed
-COPY package.json .
+COPY package*.json ./
 
 # Install Dependencies
 RUN npm install
 
 # Copy remaining source files (Different because we don't want changes to code to require redownload of dependencies)
-COPY . .
+COPY . ./
 
 # Builds and puts output to build folder ('/app/build') which is what we want to copy over 
 RUN npm run build
