@@ -22,6 +22,10 @@ RUN npm run build
 # Step 2 (Run Phase):
 FROM nginx
 
+# Expose the port for develope usage
+# Normally this is used for developers but elasticbeanstalk uses this for mapping.
+EXPOSE 80
+
 # Copy build folder from builder phase above (/usr/share/nginx/html is a location nginx uses to serve html content)
 COPY --from=builder /app/build /usr/share/nginx/html
 
